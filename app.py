@@ -25,26 +25,27 @@ load_dotenv()
 # 🔑 Initialize GEE
 # =========================
 @st.cache_resource
+
 def initialize_gee():
-    service_account =
-    st.secrets["GEE_SERVICE_ACCOUNT"]
-    Key_json=
-    json.loads(st.secrets["GEE_KEYFILE_JSON"]
-               
     """Initialize Google Earth Engine with proper authentication."""
     try:
-        # Try to initialize with existing credentials
-        credentials= ee.ServiceAccountCredentials(service_account,key_json)
+        # Load from Streamlit secrets
+        service_account = st.secrets["GEE_SERVICE_ACCOUNT"]
+        key_json = json.loads(st.secrets["GEE_KEYFILE_JSON"])
+
+        # Authenticate with Service Account
+        credentials = ee.ServiceAccountCredentials(service_account, key_json)
         ee.Initialize(credentials)
         return True
+
     except Exception as e:
         try:
-            # If that fails, try to authenticate
+            # Fallback: interactive auth (not recommended for Streamlit Cloud)
             ee.Authenticate()
             ee.Initialize()
             return True
         except Exception as auth_error:
-            st.error(f"Failed to initialize Google Earth Engine: {auth_error}")
+            st.error(f"❌ Failed to initialize GEE: {auth_error}")
             return False
 
 # =========================
