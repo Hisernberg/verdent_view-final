@@ -26,10 +26,16 @@ load_dotenv()
 # =========================
 @st.cache_resource
 def initialize_gee():
+    service_account =
+    st.secrets["GEE_SERVICE_ACCOUNT"]
+    Key_json=
+    json.loads(st.secrets["GEE_KEYFILE_JSON"]
+               
     """Initialize Google Earth Engine with proper authentication."""
     try:
         # Try to initialize with existing credentials
-        ee.Initialize()
+        credentials= ee.ServiceAccountCredentials(service_account,key_json)
+        ee.Initialize(credentials)
         return True
     except Exception as e:
         try:
@@ -89,7 +95,7 @@ def main():
     # Header
     st.markdown("""
     <div class="main-header">
-        <h1>🌸 BloomWatch AI</h1>
+        <h1>🌸 Verdent_view AI</h1>
         <p>Advanced Ecological Intelligence Platform for Global Plant Bloom Monitoring</p>
         <p><em>Powered by NASA Satellite Data, Google Earth Engine & AI Analytics</em></p>
     </div>
