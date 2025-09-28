@@ -1,5 +1,5 @@
 # GitHub Actions workflow for testing before deployment
-name: Test BloomWatch AI
+name: Test  Verdent_view 
 
 on:
   push:
@@ -56,4 +56,5 @@ jobs:
         python -c "
         import app
         print('✅ App module loads successfully')
+
         "
