@@ -1,4 +1,4 @@
-# 🌸 BloomWatch AI
+# 🌸 Verdent_view AI
 
 **Advanced Ecological Intelligence Platform for Global Plant Bloom Monitoring**
 
@@ -210,5 +210,6 @@ For issues and questions:
 - [Groq API](https://groq.com/)
 
 ---
+
 
 **BloomWatch AI** - Transforming satellite data into ecological intelligence 🌸🤖
